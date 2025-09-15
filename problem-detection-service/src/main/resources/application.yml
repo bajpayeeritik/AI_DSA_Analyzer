@@ -1,0 +1,77 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: problem-detection-service
+
+  # MySQL Configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/leetcode_tracker?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: Makemegreat@1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA Configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  # Redis Configuration
+  data:
+    redis:
+      host: localhost
+      port: 6380
+      timeout: 60000ms
+      database: 0
+
+  # Kafka Configuration
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: session-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    properties:
+      spring.json.add.type.headers: false
+      spring.json.trusted.packages: "*"
+
+logging:
+  level:
+    root: info
+    ai.dsa.helper: debug
+
+app:
+  kafka:
+    topics:
+      problemDetected: problem-detected
+      sessionStarted: session-started
+      sessionProgress: session-progress
+      sessionSubmitted: session-submitted
+      sessionEnded: session-ended
+  time-config:
+    leetcode:
+      easy: 10
+      medium: 25
+      hard: 40
+    geeksforgeeks:
+      easy: 8
+      medium: 20
+      hard: 35
+    codeforces:
+      easy: 15
+      medium: 30
+      hard: 45
+    spoj:
+      easy: 12
+      medium: 28
+      hard: 50
