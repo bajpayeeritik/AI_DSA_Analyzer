@@ -1,0 +1,31 @@
+@echo off
+echo ========================================
+echo Stopping Kafka/Zookeeper/Redis Services
+echo ========================================
+
+set KAFKA_HOME=E:\Project\AI_DSA_Analyzer\PipelineHelper\kafka
+
+echo.
+echo [1/4] Stopping Kafka...
+cd /d "%KAFKA_HOME%"
+call bin\windows\kafka-server-stop.bat 2>nul
+timeout /t 5 /nobreak >nul
+
+echo.
+echo [2/4] Stopping Zookeeper...
+call bin\windows\zookeeper-server-stop.bat 2>nul
+timeout /t 5 /nobreak >nul
+
+echo.
+echo [3/4] Stopping Redis...
+taskkill /f /im redis-server.exe 2>nul
+
+echo.
+echo [4/4] Cleaning up Java processes...
+taskkill /f /im java.exe 2>nul
+
+echo.
+echo ========================================
+echo All services stopped successfully!
+echo ========================================
+pause

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .setting {
+      margin-bottom: 15px;
+    }
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .stats {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>LeetCode Tracker</h3>
+  </div>
+
+  <div class="setting">
+    <div class="toggle">
+      <span>Enable Tracking</span>
+      <label class="switch">
+        <input type="checkbox" id="trackingToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="setting">
+    <label for="backendUrl">Backend URL:</label>
+    <input type="text" id="backendUrl" style="width: 100%; margin-top: 5px;" placeholder="http://localhost:3000/api/activity">
+  </div>
+
+  <div class="stats">
+    <h4 style="margin-top: 0;">Today's Activity</h4>
+    <div class="stat-item">
+      <span>Runs:</span>
+      <span id="runCount">0</span>
+    </div>
+    <div class="stat-item">
+      <span>Submissions:</span>
+      <span id="submitCount">0</span>
+    </div>
+    <div class="stat-item">
+      <span>Problems:</span>
+      <span id="problemCount">0</span>
+    </div>
+  </div>
+
+  <button id="exportData" style="width: 100%; margin-top: 15px; padding: 8px;">Export Data</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

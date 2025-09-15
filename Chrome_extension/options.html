@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>LeetCode Tracker Options</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .section h3 {
+      margin-top: 0;
+    }
+    input[type="text"], input[type="url"] {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .danger {
+      background-color: #f44336;
+    }
+    .danger:hover {
+      background-color: #da190b;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .success {
+      background-color: #dff0d8;
+      color: #3c763d;
+      border: 1px solid #d6e9c6;
+    }
+    .error {
+      background-color: #f2dede;
+      color: #a94442;
+      border: 1px solid #ebccd1;
+    }
+  </style>
+</head>
+<body>
+  <h1>LeetCode Tracker Settings</h1>
+  
+  <div class="section">
+    <h3>Backend Configuration</h3>
+    <label for="backendUrl">Backend URL:</label>
+    <input type="url" id="backendUrl" placeholder="http://localhost:3000/api/activity">
+    
+    <button id="testConnection">Test Connection</button>
+    <div id="connectionStatus"></div>
+  </div>
+
+  <div class="section">
+    <h3>Data Management</h3>
+    <button id="exportAllData">Export All Data</button>
+    <button id="clearData" class="danger">Clear All Data</button>
+    <button id="viewData">View Stored Data</button>
+  </div>
+
+  <div class="section">
+    <h3>Statistics</h3>
+    <div id="statistics"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
